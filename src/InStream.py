@@ -7,7 +7,7 @@ class InStream(IOStream):
     TIMEOUT_SEC = 1
     BUFFER_SIZE = 100
 
-    def __init__(self, clSocket: socket):
+    def __init__(self, clSocket):
         self._clSocket = clSocket
         self._nextData = ""
 
