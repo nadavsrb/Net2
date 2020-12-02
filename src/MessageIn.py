@@ -33,3 +33,12 @@ class MessageIn:
             return
 
         self.__filePath = data[startPathIndex:endPathIndex]
+
+    def getIsTimeout(self):
+        return self.__isTimeout
+
+    def getIsConClose(self):
+        return self.__isConClose
+
+    def getFilePath(self):
+        return self.__filePath
