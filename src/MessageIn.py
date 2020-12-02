@@ -21,15 +21,15 @@ class MessageIn:
         startConIndex = data.find(self.STR_BEFORE_CON) + len(self.STR_BEFORE_CON)
 
         if startPathIndex == -1 or endPathIndex == -1 or startConIndex == -1:
-            print("Client sent a non valid message, disconnecting from client...")  # should stay??????
-            self.__isConClose = True  # would make us to disconnect the client
+            # Client sent a non valid message, disconnecting from client...
+            self.__isConClose = True
             return
 
         if data.startswith(self.CLOSE_STR, startConIndex):
             self.__isConClose = True
         elif not data.startswith(self.KEEP_STR, startConIndex):  # isConClose = False in default
-            print("Client sent a non valid message, disconnecting from client...")  # should stay??????
-            self.__isConClose = True  # would make us to disconnect the client
+            # Client sent a non valid message, disconnecting from client...
+            self.__isConClose = True
             return
 
         self.__filePath = data[startPathIndex:endPathIndex]

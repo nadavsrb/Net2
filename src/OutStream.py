@@ -1,6 +1,7 @@
 import socket
 
 from IOStream import IOStream
+from MessageOut import MessageOut
 
 
 class OutStream(IOStream):
