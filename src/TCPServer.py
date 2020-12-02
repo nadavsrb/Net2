@@ -1,12 +1,13 @@
 import socket
 
 from InStream import InStream
+from OutStream import OutStream
 
 
 class TCPServer:
     BACKLOG = 5
 
-    def start(self, port, ch):
+    def start(self, port: int, ch: ClientHandler):
         server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
         server.bind(('', port))

@@ -5,9 +5,9 @@ from IOStream import IOStream
 
 class OutStream(IOStream):
 
-    def __init__(self, clSocket):
-        self._clSocket = clSocket
+    def __init__(self, clSocket: socket.socket):
+        self.__clSocket = clSocket
 
-    def sendMessage(self, mo):
-        data = repr(mo) + self.EOM
-        self._clSocket.send(data.encode())
+    def sendMessage(self, mo: MessageOut):
+        data = bytes(mo) + bytes(self.EOM)
+        self.__clSocket.send(data)
