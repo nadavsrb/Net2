@@ -1,5 +1,7 @@
 import socket
 
+from InStream import InStream
+
 
 class TCPServer:
     BACKLOG = 5
@@ -13,9 +15,6 @@ class TCPServer:
         while True:
             client, clAddr = server.accept()
 
-            try:
-                ch.handleClient(InStream(client), OutStream(client))
-            except socket.timeout:
-                pass  # we catch the timeout exception and continue.
+            ch.handleClient(InStream(client), OutStream(client))
 
             client.close()
