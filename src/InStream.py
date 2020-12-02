@@ -11,7 +11,7 @@ class InStream(IOStream):
         self._clSocket = clSocket
         self._nextData = ""
 
-    def getMassage(self):
+    def getMessage(self):
         isTimeout = False
         data = self._nextData
         self._nextData = ""
