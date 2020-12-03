@@ -10,6 +10,9 @@ class FileManager:
     FILE_NOT_FOUND_STATUS = 404
     FILE_FOUND_STATUS = 200
 
+    def __init__(self):
+        self.__lastFileStatus = 0
+
     def getLastFileStatus(self) -> int:
         return self.__lastFileStatus
 
@@ -17,7 +20,7 @@ class FileManager:
         self.__lastFileStatus = 0
         data = ""
 
-        if filePath == self.RELATIVE_PATH:
+        if filePath == self.REDIRECT_STR:
             self.__lastFileStatus = self.REDIRECT_STATUS
             return data.encode()
 
@@ -42,6 +45,6 @@ class FileManager:
             return bytesData
 
         with open(filePath) as file:
-            data = file.readlines()
+            data = file.read()
 
         return data.encode()

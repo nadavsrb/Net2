@@ -51,9 +51,9 @@ class MessageOut:
 
         data += self.__getOtherLines()
 
-        dataBytes = bytes(data)
+        dataBytes = data.encode()
 
         if self.__statusNum == self.THERE_IS_DATA:
-            dataBytes += bytes(self.NEW_LINE) + self.__data
+            dataBytes += self.NEW_LINE.encode() + self.NEW_LINE.encode() + self.__data
 
         return dataBytes

@@ -10,5 +10,5 @@ class OutStream(IOStream):
         self.__clSocket = clSocket
 
     def sendMessage(self, mo: MessageOut):
-        data = bytes(mo) + bytes(self.EOM)
+        data = bytes(mo) + self.EOM.encode()
         self.__clSocket.send(data)

@@ -5,7 +5,7 @@ from MessageIn import MessageIn
 
 
 class InStream(IOStream):
-    TIMEOUT_SEC = 1
+    TIMEOUT_SEC = 1.0
     BUFFER_SIZE = 100
 
     def __init__(self, clSocket: socket.socket):
@@ -21,7 +21,13 @@ class InStream(IOStream):
 
             while not (self.EOM in data):
                 self.__clSocket.settimeout(self.TIMEOUT_SEC)
-                data += self.__clSocket.recv(self.BUFFER_SIZE).decode()
+
+                bytesData = self.__clSocket.recv(self.BUFFER_SIZE)
+
+                if bytesData == b'': #then the client disconnect
+                    raise socket.timeout()
+
+                data += bytesData.decode()
                 self.__clSocket.settimeout(None)
 
             index = data.find(self.EOM) + len(self.EOM)
