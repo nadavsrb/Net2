@@ -16,20 +16,23 @@ class MessageIn:
         if self.__isTimeout:
             return
 
+        # if not timeout we should print the data:
+        print(data)
+
         startPathIndex = data.find(self.STR_BEFORE_PATH) + len(self.STR_BEFORE_PATH)
         endPathIndex = data.find(self.STR_AFTER_PATH)
         startConIndex = data.find(self.STR_BEFORE_CON) + len(self.STR_BEFORE_CON)
 
         if startPathIndex == -1 or endPathIndex == -1 or startConIndex == -1:
             # Client sent a non valid message, disconnecting from client...
-            self.__isConClose = True
+            self.__isTimeout = True
             return
 
         if data.startswith(self.CLOSE_STR, startConIndex):
             self.__isConClose = True
         elif not data.startswith(self.KEEP_STR, startConIndex):  # isConClose = False in default
             # Client sent a non valid message, disconnecting from client...
-            self.__isConClose = True
+            self.__isTimeout = True
             return
 
         self.__filePath = data[startPathIndex:endPathIndex]
