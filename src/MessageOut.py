@@ -18,7 +18,6 @@ class MessageOut:
         if isClConClose or statusNum != self.THERE_IS_DATA:
             self.__isConClose = True
         
-        self.__isConClose = isClConClose
         self.__data = data
 
     def __getStatusStr(self) -> str:
