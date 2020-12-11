@@ -13,7 +13,12 @@ class MessageOut:
 
     def __init__(self, statusNum: int, isClConClose: bool, data: bytes):
         self.__statusNum = statusNum
-        self.__isClConClose = isClConClose
+
+        self.__isConClose = False
+        if isClConClose or statusNum != self.THERE_IS_DATA:
+            self.__isConClose = True
+        
+        self.__isConClose = isClConClose
         self.__data = data
 
     def __getStatusStr(self) -> str:
@@ -44,7 +49,7 @@ class MessageOut:
         data = self.PROTOCOL_STR + str(self.__statusNum) + self.SPACE + statusStr
 
         conStatus = self.KEEP_STR
-        if self.__isClConClose:
+        if self.__isConClose:
             conStatus = self.CLOSE_STR
 
         data += self.NEW_LINE + self.CON_STR + conStatus
@@ -57,3 +62,6 @@ class MessageOut:
             dataBytes += self.NEW_LINE.encode() + self.NEW_LINE.encode() + self.__data
 
         return dataBytes
+
+    def getIsConClose(self):
+        return self.__isConClose
