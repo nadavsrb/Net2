@@ -11,9 +11,9 @@ class MessageOut:
     REDIRECT_FILE_PATH = "/result.html"
     THERE_IS_DATA = 200
 
-    def __init__(self, statusNum: int, isConClose: bool, data: bytes):
+    def __init__(self, statusNum: int, isClConClose: bool, data: bytes):
         self.__statusNum = statusNum
-        self.__isConClose = isConClose
+        self.__isClConClose = isClConClose
         self.__data = data
 
     def __getStatusStr(self) -> str:
@@ -44,7 +44,7 @@ class MessageOut:
         data = self.PROTOCOL_STR + str(self.__statusNum) + self.SPACE + statusStr
 
         conStatus = self.KEEP_STR
-        if self.__isConClose:
+        if self.__isClConClose:
             conStatus = self.CLOSE_STR
 
         data += self.NEW_LINE + self.CON_STR + conStatus
