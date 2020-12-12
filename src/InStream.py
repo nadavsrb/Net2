@@ -44,5 +44,7 @@ class InStream(IOStream):
         #symbols that we reach the timeout.
         except socket.timeout:
             isTimeout = True
+        except: #if got RST message from client
+            isTimeout = True
         #return the message out according to the data and if there was a timeout.
         return MessageIn(data, isTimeout)
