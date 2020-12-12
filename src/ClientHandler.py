@@ -2,7 +2,8 @@ from InStream import InStream
 from MessageHandler import MessageHandler
 from OutStream import OutStream
 
-
+#this class is in charge of the communication with the client.
+#gets the messages with the input stream and send them with the output stream.
 class ClientHandler:
 
     # initialize the client handler with a massage handler that will
